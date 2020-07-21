@@ -1,7 +1,10 @@
 # python养鸽场
 
 #### 介绍
-鸽子咕咕咕咕咕
+这里是某同学python学习的打卡之处(雾
+望不小心逛到此处的大佬勿喷哦~
+真正的鸽子永远只会咕咕咕咕咕~
+如有任何信息想与我交流的请发邮箱2961893588@qq.com，广告骚扰者一律拉黑
 
 #### 软件架构
 软件架构说明
@@ -25,13 +28,3 @@
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
-
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 df = pd.read_excel('C:\\vscode\py\python_pigeon_farm\py_panda\电影信息.xlsx')
 
 #print(df)
@@ -20,6 +21,12 @@ index=[item[0] for item in pairs]
 data=[item[1] for item in pairs]
 df1=pd.DataFrame({'演员':index,'电影名称':data})
 
-result = df1.groupby('演员', as_index=False).count()
+result = df1.groupby('演员', as_index=False, sort=False).count()
 result.columns=('演员','电影数')
-print(result)
+result.to_excel('C:\\vscode\py\python_pigeon_farm\py_panda/演员统计表.xlsx')
+#print(result)
+
+plt.figure(figsize=(5,5),dpi=100,facecolor='LightPink')
+result.plot(x='演员',y='电影数',kind='bar')
+plt.savefig('C:\\vscode\py\python_pigeon_farm\py_panda/演员统计表.png')
+plt.show()

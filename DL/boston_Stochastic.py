@@ -60,19 +60,23 @@ class Network(object):
         self.w-=eta*gradient_w
         self.b-=eta*gradient_b
     
-    def train(self,x,y,iterations=100,eta=0.01):
+    def train(self,train_data,iterations=100,eta=0.01,batch_size=10):
+        n=len(train_data)
         losses=[]
         for i in range(iterations):
-            losses.append(self.loss(self.forward(x),y))
-            gradient_w,gradient_b=self.gradient(x,y)
-            self.update(gradient_w,gradient_b,eta)
+            np.random.shuffle(train_data)
+            mini_batches=[train_data[k:k+batch_size] for k in range(0,n,batch_size)]
+            for mini_batch in mini_batches:
+                test_x=mini_batch[:,:-1]
+                test_y=mini_batch[:,-1:]
+                losses.append(self.loss(self.forward(test_x),test_y))
+                gradient_w,gradient_b=self.gradient(test_x,test_y)
+                self.update(gradient_w,gradient_b,eta)
         return losses,self.w,self.b    
 
 
 train_data,test_data=load_data()
-x=train_data[:,:-1]
-y=train_data[:,-1:]
-net=Network(x.shape[1])
+net=Network(train_data[:,:-1].shape[1])
 #forward=net.forward(x)
 #loss=net.loss(forward(x),y)
 #下面是计算显示损失函数：
@@ -81,13 +85,14 @@ net=Network(x.shape[1])
 #print(net.forward(x))
 #gradient_w,gradient_b=net.gradient(x,y)
 #print(gradient_w[0],gradient_b[0])
-num_iterations=2000
+num_iterations=20
+num_batch_size=10
 eta=0.01
-losses,w,b=net.train(x,y,iterations=num_iterations,eta=0.01)
+losses,w,b=net.train(train_data,iterations=num_iterations,eta=0.01,batch_size=num_batch_size)
 
-plot_x=np.arange(num_iterations)
+plot_x=np.arange(len(losses))
 plot_y=np.array(losses)
 plt.plot(plot_x,plot_y)
-#plt.savefig('C:\\vscode\py\python_pigeon_farm\DL\loss.png')
+plt.savefig('C:\\vscode\py\python_pigeon_farm\DL\loss_stochastic.png')
 plt.show()
 print(w,b)

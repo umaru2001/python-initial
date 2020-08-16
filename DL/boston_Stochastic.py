@@ -60,10 +60,10 @@ class Network(object):
         self.w-=eta*gradient_w
         self.b-=eta*gradient_b
     
-    def train(self,train_data,iterations=100,eta=0.01,batch_size=10):
+    def train(self,train_data,num_epoch=100,eta=0.01,batch_size=10):
         n=len(train_data)
         losses=[]
-        for i in range(iterations):
+        for epoch_id in range(num_epoch):
             np.random.shuffle(train_data)
             mini_batches=[train_data[k:k+batch_size] for k in range(0,n,batch_size)]
             for mini_batch in mini_batches:
@@ -88,7 +88,7 @@ net=Network(train_data[:,:-1].shape[1])
 num_iterations=20
 num_batch_size=10
 eta=0.01
-losses,w,b=net.train(train_data,iterations=num_iterations,eta=0.01,batch_size=num_batch_size)
+losses,w,b=net.train(train_data,num_epoch=num_iterations,eta=0.01,batch_size=num_batch_size)
 
 plot_x=np.arange(len(losses))
 plot_y=np.array(losses)
